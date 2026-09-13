@@ -39,56 +39,57 @@ export default function FlightCard({ flight, onBookFlight, user, setUser }) {
         
         {/* Top Surge & Freeze Banner Bar */}
         {(frozenPriceObj || dynamic.surgeLabel || isSurging) && (
-          <div className="flex items-center justify-between gap-2 mb-4 text-xs">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-4 text-xs">
             {frozenPriceObj ? (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-extrabold border border-emerald-300">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-extrabold border border-emerald-300 text-[10px] sm:text-xs text-center leading-tight">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                 Price Frozen at ₹{frozenPriceObj.lockedPrice.toLocaleString('en-IN')} (Guaranteed)
               </span>
             ) : dynamic.surgeLabel ? (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 font-extrabold border border-amber-300">
-                <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+              <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-amber-100 text-amber-900 font-extrabold border border-amber-300 text-[10px] sm:text-xs text-center leading-tight">
+                <Sparkles className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                 {dynamic.surgeLabel}
               </span>
             ) : isSurging ? (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100 text-rose-800 font-extrabold border border-rose-300">
-                <TrendingUp className="w-3.5 h-3.5 text-rose-600" />
-                High Demand Fare Surge
+              <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-rose-100 text-rose-800 font-extrabold border border-rose-300 text-[10px] sm:text-xs text-center leading-tight">
+                <TrendingUp className="w-3.5 h-3.5 text-rose-600 shrink-0" />
+                High Demand Surge
               </span>
             ) : null}
 
-            <div className="flex items-center gap-2 ml-auto">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 ml-auto">
               {user && (
                 <button
                   onClick={handleToggleSave}
-                  className={`inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-1 rounded-full border transition-colors ${
+                  className={`inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold px-2 sm:px-2.5 py-1 rounded-full border transition-colors ${
                     isSaved
                       ? 'bg-rose-50 text-rose-600 border-rose-200 hover:bg-rose-100'
                       : 'bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200'
                   }`}
                   title={isSaved ? 'Remove from saved' : 'Save this flight'}
                 >
-                  <Heart className={`w-3 h-3 ${isSaved ? 'fill-rose-500 text-rose-500' : ''}`} />
-                  {isSaved ? 'Saved' : 'Save'}
+                  <Heart className={`w-3 h-3 ${isSaved ? 'fill-rose-500 text-rose-500' : 'shrink-0'}`} />
+                  <span className="hidden sm:inline">{isSaved ? 'Saved' : 'Save'}</span>
+                  <span className="sm:hidden">{isSaved ? 'Saved' : 'Save'}</span>
                 </button>
               )}
               <button
                 onClick={() => setShowHistoryModal(true)}
-                className="inline-flex items-center gap-1 text-[11px] font-bold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-full transition-colors"
+                className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-2 sm:px-2.5 py-1 rounded-full transition-colors"
                 title="View 30-day price trend"
               >
-                <TrendingUp className="w-3.5 h-3.5 text-slate-500" />
-                Price Graph
+                <TrendingUp className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                <span className="whitespace-nowrap">Price Graph</span>
               </button>
 
               {!frozenPriceObj && (
                 <button
                   onClick={() => setShowFreezeModal(true)}
-                  className="inline-flex items-center gap-1 text-[11px] font-bold text-rose-700 hover:text-rose-900 bg-rose-50 hover:bg-rose-100 px-2.5 py-1 rounded-full border border-rose-200 transition-colors"
+                  className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold text-rose-700 hover:text-rose-900 bg-rose-50 hover:bg-rose-100 px-2 sm:px-2.5 py-1 rounded-full border border-rose-200 transition-colors"
                   title="Lock in this price for 24 hours"
                 >
-                  <Lock className="w-3 h-3 text-rose-600" />
-                  Freeze Price
+                  <Lock className="w-3 h-3 text-rose-600 shrink-0" />
+                  <span className="whitespace-nowrap">Freeze Price</span>
                 </button>
               )}
             </div>
