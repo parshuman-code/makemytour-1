@@ -559,7 +559,7 @@ function SearchInput({
   );
 }
 
-function HotelSearchCard({ hotel, user, setUser, onBook }) {
+const HotelSearchCard = React.memo(({ hotel, user, setUser, onBook }) => {
   const itemId = hotel._id || hotel.id || hotel.hotelName;
   const [saved, setSaved] = React.useState(() => isItemSaved(user, itemId, 'hotel'));
 
@@ -578,7 +578,7 @@ function HotelSearchCard({ hotel, user, setUser, onBook }) {
     <div className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col">
       {hotel.image && (
         <div className="relative h-40 overflow-hidden">
-          <img src={hotel.image} alt={hotel.hotelName} className="w-full h-full object-cover" />
+          <img src={hotel.image} alt={hotel.hotelName} loading="lazy" className="w-full h-full object-cover" />
           {user && (
             <button
               onClick={handleSave}
@@ -608,4 +608,4 @@ function HotelSearchCard({ hotel, user, setUser, onBook }) {
       </div>
     </div>
   );
-}
+});

@@ -8,7 +8,7 @@ import PriceFreezeModal from './PriceFreezeModal';
 import { isFlightPriceFrozen } from '../utils/pricingEngine';
 import { toggleSavedItem, isItemSaved } from '../utils/userSync';
 
-export default function FlightCard({ flight, onBookFlight, user, setUser }) {
+const FlightCard = ({ flight, onBookFlight, user, setUser }) => {
   const [showHistoryModal, setShowHistoryModal] = useState(false);
   const [showFreezeModal, setShowFreezeModal] = useState(false);
 
@@ -105,6 +105,7 @@ export default function FlightCard({ flight, onBookFlight, user, setUser }) {
                 <img 
                   src={flight.logo} 
                   alt={flight.airline || flight.flightName} 
+                  loading="lazy"
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     e.target.onerror = null;
@@ -233,4 +234,6 @@ export default function FlightCard({ flight, onBookFlight, user, setUser }) {
       )}
     </>
   );
-}
+};
+
+export default React.memo(FlightCard);

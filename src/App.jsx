@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import HomePage from './pages/HomePage';
-import FlightDetailsPage from './pages/FlightDetailsPage';
-import BookFlightPage from './pages/BookFlightPage';
-import BookHotelPage from './pages/BookHotelPage';
-import ProfilePage from './pages/ProfilePage';
-import BlogPage from './pages/BlogPage';
-import FlightTrackerPage from './pages/FlightTrackerPage';
-import AdminDashboardPage from './pages/AdminDashboardPage';
 import HotelBookingModal from './components/HotelBookingModal';
 import AdminModal from './components/AdminModal';
 import NotificationToast from './components/NotificationToast';
+import { Plane } from 'lucide-react';
+
+const HomePage = React.lazy(() => import('./pages/HomePage'));
+const FlightDetailsPage = React.lazy(() => import('./pages/FlightDetailsPage'));
+const BookFlightPage = React.lazy(() => import('./pages/BookFlightPage'));
+const BookHotelPage = React.lazy(() => import('./pages/BookHotelPage'));
+const ProfilePage = React.lazy(() => import('./pages/ProfilePage'));
+const BlogPage = React.lazy(() => import('./pages/BlogPage'));
+const FlightTrackerPage = React.lazy(() => import('./pages/FlightTrackerPage'));
+const AdminDashboardPage = React.lazy(() => import('./pages/AdminDashboardPage'));
+
 
 import { initialFlightsData, bestOffersData } from './mockData';
 import { syncUserFromBackend } from './utils/userSync';
@@ -174,76 +177,87 @@ function AppContent() {
         setUser={setUser}
       />
 
-      <Routes>
-        <Route 
-          path="/" 
-          element={
-            <HomePage 
-              flights={flights} 
-              bestOffers={bestOffers}
-              onBookFlight={handleOpenBookingModal}
-              user={user}
-              setUser={setUser}
-            />
-          } 
-        />
-        <Route 
-          path="/flight-tracker" 
-          element={
-            <FlightTrackerPage 
-              onTriggerNotification={(notif) => setActiveNotification(notif)} 
-            />
-          } 
-        />
-        <Route 
-          path="/book-flight/:id" 
-          element={
-            <BookFlightPage 
-              flights={flights}
-              user={user}
-              setUser={setUser}
-              onConfirmBooking={handleConfirmFlightBooking}
-            />
-          } 
-        />
-        <Route 
-          path="/book-hotel/:id" 
-          element={
-            <BookHotelPage 
-              user={user}
-              setUser={setUser}
-              onConfirmBooking={handleConfirmHotelBooking}
-            />
-          } 
-        />
-        <Route 
-          path="/blog" 
-          element={<BlogPage />} 
-        />
-        <Route 
-          path="/admin" 
-          element={<AdminDashboardPage />} 
-        />
-        <Route 
-          path="/flight-details/:id" 
-          element={
-            <FlightDetailsPage 
-              flights={flights}
-              onBookFlight={handleOpenBookingModal}
-            />
-          } 
-        />
-        <Route 
-          path="/profile" 
-          element={
-            <ProfilePage 
-              user={user}
-              setUser={setUser}
-              onLogout={() => { setUser(null); localStorage.removeItem('mmt_user'); }}
-            />
-          } 
-        />
-      </Routes>
+      <Suspense fallback={
+        <div className="min-h-screen flex items-center justify-center bg-slate-50">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-16 h-16 bg-rose-50 rounded-2xl flex items-center justify-center animate-bounce shadow-sm">
+              <Plane className="w-8 h-8 text-rose-500 fill-rose-500 animate-pulse" />
+            </div>
+            <p className="text-slate-500 font-medium text-sm animate-pulse">Loading MakeMyTour...</p>
+          </div>
+        </div>
+      }>
+        <Routes>
+          <Route 
+            path="/" 
+            element={
+              <HomePage 
+                flights={flights} 
+                bestOffers={bestOffers}
+                onBookFlight={handleOpenBookingModal}
+                user={user}
+                setUser={setUser}
+              />
+            } 
+          />
+          <Route 
+            path="/flight-tracker" 
+            element={
+              <FlightTrackerPage 
+                onTriggerNotification={(notif) => setActiveNotification(notif)} 
+              />
+            } 
+          />
+          <Route 
+            path="/book-flight/:id" 
+            element={
+              <BookFlightPage 
+                flights={flights}
+                user={user}
+                setUser={setUser}
+                onConfirmBooking={handleConfirmFlightBooking}
+              />
+            } 
+          />
+          <Route 
+            path="/book-hotel/:id" 
+            element={
+              <BookHotelPage 
+                user={user}
+                setUser={setUser}
+                onConfirmBooking={handleConfirmHotelBooking}
+              />
+            } 
+          />
+          <Route 
+            path="/blog" 
+            element={<BlogPage />} 
+          />
+          <Route 
+            path="/admin" 
+            element={<AdminDashboardPage />} 
+          />
+          <Route 
+            path="/flight-details/:id" 
+            element={
+              <FlightDetailsPage 
+                flights={flights}
+                onBookFlight={handleOpenBookingModal}
+              />
+            } 
+          />
+          <Route 
+            path="/profile" 
+            element={
+              <ProfilePage 
+                user={user}
+                setUser={setUser}
+                onLogout={() => { setUser(null); localStorage.removeItem('mmt_user'); }}
+              />
+            } 
+          />
+        </Routes>
+      </Suspense>
 
       {/* Live Push Notification Toast Banner */}
       <NotificationToast 

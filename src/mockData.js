@@ -3,7 +3,7 @@ export const initialFlightsData = [
     id: "FL-202",
     airline: "SkyHigh Airlines",
     code: "SH-202",
-    logo: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=120&q=80",
+    logo: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=120&q=75&fm=webp",
     from: "Paris",
     to: "Tokyo",
     departureTime: "08:30 AM",
@@ -22,7 +22,7 @@ export const initialFlightsData = [
     id: "FL-305",
     airline: "Air Express",
     code: "AX-305",
-    logo: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=120&q=80",
+    logo: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=120&q=75&fm=webp",
     from: "New York",
     to: "London",
     departureTime: "06:15 PM",
@@ -41,7 +41,7 @@ export const initialFlightsData = [
     id: "FL-412",
     airline: "Oceanic Air",
     code: "OA-412",
-    logo: "https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=120&q=80",
+    logo: "https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=120&q=75&fm=webp",
     from: "Paris",
     to: "Bali, Indonesia",
     departureTime: "10:00 AM",
@@ -60,7 +60,7 @@ export const initialFlightsData = [
     id: "FL-508",
     airline: "Tokyo Wings",
     code: "TW-508",
-    logo: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=120&q=80",
+    logo: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=120&q=75&fm=webp",
     from: "Tokyo",
     to: "London",
     departureTime: "11:50 PM",
@@ -79,7 +79,7 @@ export const initialFlightsData = [
     id: "FL-119",
     airline: "Global Jet",
     code: "GJ-119",
-    logo: "https://images.unsplash.com/photo-1556388158-158ea5ccacbd?auto=format&fit=crop&w=120&q=80",
+    logo: "https://images.unsplash.com/photo-1556388158-158ea5ccacbd?auto=format&fit=crop&w=120&q=75&fm=webp",
     from: "Paris",
     to: "New York",
     departureTime: "01:20 PM",
@@ -104,7 +104,7 @@ export const bestOffersData = [
     subtitle: "Applicable on top domestic routes & airlines",
     code: "MMTCURE",
     discount: "20% OFF",
-    image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80"
+    image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=75&fm=webp"
   },
   {
     id: 2,
@@ -113,7 +113,7 @@ export const bestOffersData = [
     subtitle: "Save up to $150 on premium resort stays",
     code: "SPECIALUPI",
     discount: "$150 OFF",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80"
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=75&fm=webp"
   },
   {
     id: 3,
@@ -122,7 +122,7 @@ export const bestOffersData = [
     subtitle: "Includes Flights + 5 Star Stay + Airport Transfers",
     code: "HOLIDAYFUN",
     discount: "FLAT $200 OFF",
-    image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80"
+    image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=75&fm=webp"
   }
 ];
 
@@ -130,7 +130,7 @@ export const userProfileData = {
   name: "John Doe",
   email: "john.doe@example.com",
   phone: "+1 (555) 019-2834",
-  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=75&fm=webp",
   membership: "MakeMyTour Preferred Gold",
   bookings: [
     {
